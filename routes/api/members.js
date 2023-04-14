@@ -4,11 +4,12 @@ const router = express.Router();
 const members = require('../../Members');
 
 //Gets all members
-app.get('/', (req, res) => res.json(members));
+router.get('/', (req, res) => res.json(members));
 
 // Get Single Member
-app.get('/:id', (req, res) => {
-    //res.send(req.params.id);
+router.get('/:id', (req, res) => {
+// res.send(req.params.id);
+
 const found = members.some(member => member.id === parseInt(req.params.id));
 
     if(found) {
@@ -31,12 +32,13 @@ router.post('/', (req, res) => {
     }
 
     members.push(newMember);
-    res.jsonn(members);
+    res.status(200).json(members);
 });
 
 // Update Member
-app.put('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     //res.send(req.params.id);
+    console.log(req.body);
 const found = members.some(member => member.id === parseInt(req.params.id));
 
     if(found) {
